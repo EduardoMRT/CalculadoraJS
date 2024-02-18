@@ -1,2 +1,3 @@
-var resutMenor = document.getElementById("resultMenor");
-resutMenor.innerHTML = "resultado";
+// var resultMenor = 
+document.getElementById("resultMenor").innerHTML="teste"
+// resultMenor.innerHTML = "resultado";
