@@ -12,20 +12,7 @@
 
 //     // console.log(y);
 // }
-var x;
-var r = document.getElementById("resultMenor");
-function num7(){
-    x = document.getElementById("btn7").value;
-    r.innerHTML = x;
-}
 
-function num8(){
-    x = document.getElementById("btn8").value;
-    r.innerHTML = x;
-}
-console.log(x);
-var lista = lista+""+x;
-console.log(lista); 
 // r.innerHTML = lista;
 
 // document.addEventListener("DOMContentLoaded", function() {
