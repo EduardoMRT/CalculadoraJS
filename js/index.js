@@ -1,33 +1,94 @@
-// function num(){
+var contador = 0;
+var linha = 0;
+var linha1 = 0;
+var linha2 = 0;
+var linhaN1 = 0;
+var linhaN2 = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const botoes = document.querySelectorAll(".btn");
+    var valorDoBotao; // Declare a variável fora da função
 
-//     for(let x = 7; x<=9; x++){
-//         var a = document.getElementById("btn"+x);
-//         if(a.onclick){
-//             console.log(a.value);
-//         }
-//         // var z = document.getElementById("btn"+x).value;
-//         // console.log(z);
-//     }
-//     // var y = document.getElementById("btn7").value;
+    botoes.forEach(function (botao) {
+        botao.addEventListener("click", function () {
+            valorDoBotao = this.value; // Atribua o valor do botão à variável
+            minhaFuncao(valorDoBotao); // Chame a função com o valor do botão
+        });
+    });
 
-//     // console.log(y);
-// }
+    function minhaFuncao() {
 
-// r.innerHTML = lista;
+        verificar();
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     const botoes = document.querySelectorAll(".btn");
-//     var valorDoBotao; // Declare a variável fora da função
-//     var linha = valor;
-//     botoes.forEach(function(botao) {
-//         botao.addEventListener("click", function() {
-//             valorDoBotao = this.value; // Atribua o valor do botão à variável
-//             minhaFuncao(valorDoBotao); // Chame a função com o valor do botão
-//         });
-//     });
+        function verificar() {
+            if (linha == 0) {
+                linha = null;
+                linha = valorDoBotao;
+            } else {
+                linha += valorDoBotao;
+            }
+        }
+        console.log(linha);
 
-//     function minhaFuncao(valor) {
-//         linha = valor+linha;            
-//         console.log(linha); // Agora você pode usar o valor do botão aqui
-//     }
-// });
+        if (valorDoBotao == "C") {
+            linha = null;
+            if (linha == null) {
+                linha = 0;
+                linha1 = 0;
+                linha2 = 0;
+            }
+
+        }
+
+        if (valorDoBotao == "+") {
+            if (linha1 == 0) {
+                linha1 = linha;
+                linha = 0;
+                verificar();
+                linhaN1 = linha1.match(/\d+/g).join('');
+                linhaN1 = parseInt(linhaN1);
+            } else if (linha2 == 0) {
+                linha2 = linha;
+                linhaN2 = linha2.match(/\d+/g).join('');
+                linhaN2 = parseInt(linhaN2);
+
+                linha = 0;
+                console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
+                // resultado = linhaN1 + linhaN2;
+                // linha = 0;
+                // linha = parseInt(linha);
+                // linha = resultado;
+            }
+
+        }
+
+        if (valorDoBotao == "=") {
+            linha2 = linha;
+            linhaN2 = linha2.match(/\d+/g).join('');
+            linhaN2 = parseInt(linhaN2);
+            console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
+            resultado = linhaN1 + linhaN2;
+            linha = 0;
+            linha = parseInt(linha);
+            linha = resultado;
+        }
+        if (linha1 != 0) {
+            if (linha2 != 0) {
+                const resultMenor = document.getElementById("resultMenor");
+                resultMenor.innerHTML = linha;
+            }else{
+            const resultMenor = document.getElementById("resultMenor");
+            resultMenor.innerHTML = linhaN1 + "" + linha;
+            }
+        } else {
+            const resultMenor = document.getElementById("resultMenor");
+            resultMenor.innerHTML = linha;
+        }
+        contador++;
+    }
+
+
+}
+
+
+
+);
