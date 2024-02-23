@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function popular() {
             if (linha1 == 0) {
                 linha1 = linha;
-                linha1 = linha1.replace(",",".");
+                linha1 = linha1.replace(/,/g, '.');
                 linha = 0;
                 verificar();
                 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 linhaN1 = parseFloat(linhaN1);
             } else if (linha2 == 0) {
                 linha2 = linha;
-                linha2 = linha2.replace(",",".");
+                linha2 = linha2.replace(/,/g, '.');
                 linhaN2 = linha2.match(/\d+/g).join('');
                 linhaN2 = parseFloat(linhaN2);
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (valorDoBotao == "=") {
             linha2 = linha;
-            linha2 = linha2.replace(",",".");
+            linha2 = linha2.replace(/,/g, '.');
             linhaN2 = linha2.match(/\d+/g).join('');
             linhaN2 = parseInt(linhaN2);
             console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
