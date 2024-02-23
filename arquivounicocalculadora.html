@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <!--Arquivos de Fora-->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: rgb(69, 64, 64);
+    color: white;
+}
+
+.maior{
+    height: 100vh;
+    margin: 2%;
+}
+
+.digitosUsuario{
+    width: 100%;
+    height: 20%;
+    border: 1px solid beige;
+}
+
+.teclado{
+    display: flex;
+    flex-direction: column;
+}
+.teclado .l1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid white; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.teclado .l2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid white; */
+    margin-bottom: 2%;
+}
+.teclado .l3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid white; */
+    margin-bottom: 2%;
+}
+.teclado .l4{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid white; */
+    margin-bottom: 2%;
+}
+.btn{
+    font-size: larger;
+    color: white;
+    border: 2px solid white;
+    border-radius: 100%;
+    background-color: red;
+    width: 20%;
+    height: 9vh;
+}
+
+.btn:hover{
+    color: black;
+    background-color: white;
+    transition: 0.7s;
+    border: 2px solid black;
+}
+    </style>
+</head>
+
+<body>
+    <div class="maior">
+        <div class="digitosUsuario">
+            <p id="resultMenor" style="font-size: 10vh;">  </p>
+        </div>
+        <div class="resultadoMenor">
+            <!-- <p id="resultMenor" style="font-size: 10vh;"> teste </p> -->
+        </div>
+        <div class="funcoesUsuario">
+
+        </div>
+        <div class="teclado">
+            <div class="l1">
+                <button id="btnC" value="C" class="btn">
+                    C
+                </button>
+                <button id="btnParenteses" value="()" class="btn">
+                    ()
+                </button>
+                <button id="btnP" value="%" class="btn">
+                    %
+                </button>
+                <button id="btnD" value="/" class="btn">
+                    /
+                </button>
+            </div>
+            <div class="l2">
+                <button  id="btn7" value=7 class="btn">
+                    7
+                </button>
+                <button  id="btn8" value=8 class="btn">
+                    8
+                </button>
+                <button id="btn9" value=9 class="btn"  >
+                    9
+                </button>
+                <button  id="btnx" value="*" class="btn">
+                    x
+                </button>
+            </div>
+            <div class="l3">
+                <button value="4" class="btn"  >
+                    4
+                </button>
+                <button value="5" class="btn"  >
+                    5
+                </button>
+                <button value="6" class="btn"  >
+                    6
+                </button>
+                <button id="btn-" value="-" class="btn">
+                    -
+                </button>
+            </div>
+            <div class="l4">
+                <button value="1" class="btn"  >
+                    1
+                </button>
+                <button value="2" class="btn"  >
+                    2
+                </button>
+                <button value="3" class="btn"  >
+                    3
+                </button>
+                <button id="btn+" value="+" class="btn">
+                    +
+                </button>
+            </div>
+            <div class="l4">
+                <button id="btn+/-" value="+/-" class="btn">
+                    +/-
+                </button>
+                <button value="0" class="btn"  >
+                    0
+                </button>
+                <button id="btn," value="," class="btn">
+                    ,
+                </button>
+                <button id="btn=" value="=" class="btn">
+                    =
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+var contador = 0;
+var linha = 0;
+var linha1 = 0;
+var linha2 = 0;
+var linhaN1 = 0;
+var linhaN2 = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const botoes = document.querySelectorAll(".btn");
+    var valorDoBotao; // Declare a variável fora da função
+
+    botoes.forEach(function (botao) {
+        botao.addEventListener("click", function () {
+            valorDoBotao = this.value; // Atribua o valor do botão à variável
+            minhaFuncao(valorDoBotao); // Chame a função com o valor do botão
+        });
+    });
+
+    function minhaFuncao() {
+
+        verificar();
+
+        function verificar() {
+            if (linha == 0) {
+                linha = null;
+                linha = valorDoBotao;
+            } else {
+                linha += valorDoBotao;
+            }
+        }
+        console.log(linha);
+
+        if (valorDoBotao == "C") {
+            linha = null;
+            if (linha == null) {
+                linha = 0;
+                linha1 = 0;
+                linha2 = 0;
+            }
+
+        }
+
+        if (valorDoBotao == "+") {
+            if (linha1 == 0) {
+                linha1 = linha;
+                linha = 0;
+                verificar();
+                linhaN1 = linha1.match(/\d+/g).join('');
+                linhaN1 = parseInt(linhaN1);
+            } else if (linha2 == 0) {
+                linha2 = linha;
+                linhaN2 = linha2.match(/\d+/g).join('');
+                linhaN2 = parseInt(linhaN2);
+
+                linha = 0;
+                console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
+                // resultado = linhaN1 + linhaN2;
+                // linha = 0;
+                // linha = parseInt(linha);
+                // linha = resultado;
+            }
+
+        }
+
+        if (valorDoBotao == "=") {
+            linha2 = linha;
+            linhaN2 = linha2.match(/\d+/g).join('');
+            linhaN2 = parseInt(linhaN2);
+            console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
+            resultado = linhaN1 + linhaN2;
+            linha = 0;
+            linha = parseInt(linha);
+            linha = resultado;
+        }
+        if (linha1 != 0) {
+            if (linha2 != 0) {
+                const resultMenor = document.getElementById("resultMenor");
+                resultMenor.innerHTML = linha;
+            }else{
+            const resultMenor = document.getElementById("resultMenor");
+            resultMenor.innerHTML = linhaN1 + "" + linha;
+            }
+        } else {
+            const resultMenor = document.getElementById("resultMenor");
+            resultMenor.innerHTML = linha;
+        }
+        contador++;
+    }
+
+
+}
+);
+
+    </script>
+</body>
+
+</html>
