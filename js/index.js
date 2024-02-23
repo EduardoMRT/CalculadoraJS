@@ -1,9 +1,13 @@
+// Corrigir bug do Safari
+
 var contador = 0;
 var linha = 0;
 var linha1 = 0;
 var linha2 = 0;
 var linhaN1 = 0;
 var linhaN2 = 0;
+var operacao = null;
+
 document.addEventListener("DOMContentLoaded", function () {
     const botoes = document.querySelectorAll(".btn");
     var valorDoBotao; // Declare a variável fora da função
@@ -16,6 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function minhaFuncao() {
+
+        function popular() {
+            if (linha1 == 0) {
+                linha1 = linha;
+                linha1 = linha1.replace(",",".");
+                linha = 0;
+                verificar();
+                
+                linhaN1 = linha1.match(/\d+/g).join('');
+                linhaN1 = parseFloat(linhaN1);
+            } else if (linha2 == 0) {
+                linha2 = linha;
+                linha2 = linha2.replace(",",".");
+                linhaN2 = linha2.match(/\d+/g).join('');
+                linhaN2 = parseFloat(linhaN2);
+
+                linha = 0;
+                console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
+                // resultado = linhaN1 + linhaN2;
+                // linha = 0;
+                // linha = parseInt(linha);
+                // linha = resultado;
+
+            }
+        }
 
         verificar();
 
@@ -40,44 +69,56 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (valorDoBotao == "+") {
-            if (linha1 == 0) {
-                linha1 = linha;
-                linha = 0;
-                verificar();
-                linhaN1 = linha1.match(/\d+/g).join('');
-                linhaN1 = parseInt(linhaN1);
-            } else if (linha2 == 0) {
-                linha2 = linha;
-                linhaN2 = linha2.match(/\d+/g).join('');
-                linhaN2 = parseInt(linhaN2);
-
-                linha = 0;
-                console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
-                // resultado = linhaN1 + linhaN2;
-                // linha = 0;
-                // linha = parseInt(linha);
-                // linha = resultado;
-            }
-
+            operacao = "+";
+            popular();
         }
+
+        if (valorDoBotao == "*") {
+            operacao = "*";
+            popular();
+        }
+
+        if (valorDoBotao == "-") {
+            operacao = "-";
+            popular();
+        }
+
+        if (valorDoBotao == "/") {
+            operacao = "/";
+            popular();
+        }
+
+
 
         if (valorDoBotao == "=") {
             linha2 = linha;
+            linha2 = linha2.replace(",",".");
             linhaN2 = linha2.match(/\d+/g).join('');
             linhaN2 = parseInt(linhaN2);
             console.log("Var1: " + linhaN1 + "\nVar2:" + linhaN2);
-            resultado = linhaN1 + linhaN2;
+
+            if (operacao == "+") {
+                resultado = linhaN1 + linhaN2;
+            } else if (operacao == "*") {
+                resultado = linhaN1 * linhaN2;
+            } else if (operacao == "-") {
+                resultado = linhaN1 - linhaN2;
+            } else if (operacao == "/") {
+                resultado = linhaN1 / linhaN2;
+            }
+
+
             linha = 0;
-            linha = parseInt(linha);
+            linha = parseFloat(linha);
             linha = resultado;
         }
         if (linha1 != 0) {
             if (linha2 != 0) {
                 const resultMenor = document.getElementById("resultMenor");
                 resultMenor.innerHTML = linha;
-            }else{
-            const resultMenor = document.getElementById("resultMenor");
-            resultMenor.innerHTML = linhaN1 + "" + linha;
+            } else {
+                const resultMenor = document.getElementById("resultMenor");
+                resultMenor.innerHTML = linhaN1 + "" + linha;
             }
         } else {
             const resultMenor = document.getElementById("resultMenor");
