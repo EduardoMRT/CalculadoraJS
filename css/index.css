@@ -3,7 +3,7 @@
     padding: 0;
 }
 body{
-    background-color: rgb(69, 64, 64);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 
@@ -60,20 +60,33 @@ body{
     margin-bottom: 2%;
 }
 .btn{
-    font-size: larger;
+    font-size: 4vh;
     color: white;
-    border: 2px solid white;
+    border: none;
     border-radius: 100%;
-    background-color: red;
+    background-color: rgb(31, 31, 31);
     width: 20%;
     height: 9vh;
 }
 
+#btnC{
+    color: red;
+}
+
+#btnP, #btnD, #btnx, #btn-, #btnPlus, #btnV, #btnM, #btnParenteses{
+    color: rgb(17, 123, 17);   
+}
+
+#btnIg{
+    background-color: rgb(17, 123, 17);
+}
+
 .btn:hover{
-    color: black;
-    background-color: white;
+    font-size: 3vh;
+    border: 4px solid black;
+    
     transition: 0.7s;
-    border: 2px solid black;
+    
 }
 
 #resultadoAnt{
@@ -85,4 +98,8 @@ body{
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
+}
+
+.funcoesUsuario{
+    height: 15%;
 }
