@@ -7,6 +7,7 @@ var linha2 = 0;
 var linhaN1 = 0;
 var linhaN2 = 0;
 var operacao = null;
+var histTemp = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     const botoes = document.querySelectorAll(".btn");
@@ -64,6 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 linha = 0;
                 linha1 = 0;
                 linha2 = 0;
+                histTemp = resultadoAnt;
+                resultadoAnt = 0;
+                resultadoAnt = document.getElementById("resultadoAnt");
+                resultadoAnt.innerHTML = "";
             }
 
         }
@@ -91,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (valorDoBotao == "=") {
+            var resultadoAnt = document.getElementById("resultadoAnt");
             linha2 = linha;
             linha2 = linha2.replace(/,/g, '.');
             linhaN2 = linha2.match(/\d+/g).join('');
@@ -99,14 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (operacao == "+") {
                 resultado = linhaN1 + linhaN2;
+                resultadoAnt.innerHTML = linhaN1+"+"+linhaN2;
             } else if (operacao == "*") {
                 resultado = linhaN1 * linhaN2;
+                resultadoAnt.innerHTML = linhaN1+"*"+linhaN2;
             } else if (operacao == "-") {
                 resultado = linhaN1 - linhaN2;
+                resultadoAnt.innerHTML = linhaN1+"-"+linhaN2;
             } else if (operacao == "/") {
                 resultado = linhaN1 / linhaN2;
+                resultadoAnt.innerHTML = linhaN1+"/"+linhaN2;
             }
-
 
             linha = 0;
             linha = parseFloat(linha);
